@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Générateur de signature email</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="page-wrapper">
+    <h1>Générateur de signature email</h1>
+
+    <div class="page">
+      <div class="app">
+        <section class="form-section">
+          <div class="field">
+            <label for="company">Société</label>
+            <select id="company"></select>
+          </div>
+
+          <div class="field-row">
+            <div class="field">
+              <label for="prenom">Prénom</label>
+              <input type="text" id="prenom" placeholder="Jean">
+            </div>
+            <div class="field">
+              <label for="nom">Nom</label>
+              <input type="text" id="nom" placeholder="Dupont">
+            </div>
+          </div>
+
+          <div class="field">
+            <label for="fonction">Fonction</label>
+            <input type="text" id="fonction" placeholder="Responsable Commercial">
+          </div>
+
+          <div class="field-row">
+            <div class="field">
+              <label for="tel1">Tel 1</label>
+              <input type="text" id="tel1" placeholder="+33 6 12 34 56 78">
+            </div>
+            <div class="field">
+              <label for="tel2">Tel 2 (optionnel)</label>
+              <input type="text" id="tel2" placeholder="+33 5 12 34 56 78">
+            </div>
+          </div>
+
+          <div class="field">
+            <label for="email">Adresse email</label>
+            <input type="email" id="email" placeholder="jean.dupont@exemple.com">
+          </div>
+        </section>
+
+        <section class="preview-section">
+          <h2>Aperçu</h2>
+          <div class="preview-box">
+            <div id="signature-preview"></div>
+          </div>
+          <button id="copy-btn">
+            <span class="copy-btn-label">Copier la signature</span>
+            <span class="copy-btn-fx"><span class="copy-btn-circle"></span></span>
+          </button>
+          <span id="copy-status"></span>
+        </section>
+      </div>
+
+      <aside class="tutorial">
+        <div class="tutorial-emoji" id="tutorial-emoji">⚙️</div>
+        <h2>Comment l'utiliser</h2>
+        <ol>
+          <li>
+            <strong>Choisissez votre société</strong>
+            <p>Sélectionnez votre société dans la liste déroulante.</p>
+          </li>
+          <li>
+            <strong>Renseignez vos informations</strong>
+            <p>Complétez prénom, nom, fonction, téléphone(s) et email. L'aperçu se met à jour automatiquement.</p>
+          </li>
+          <li>
+            <strong>Copiez la signature</strong>
+            <p>Cliquez sur le bouton <em>« Copier la signature »</em>. Le rendu graphique est copié dans le presse-papier.</p>
+          </li>
+          <li>
+            <strong>Ouvrez les paramètres Outlook</strong>
+            <p>Dans Outlook : <em>Fichier → Options → Courrier → Signatures</em>.</p>
+          </li>
+          <li>
+            <strong>Créez ou sélectionnez une signature</strong>
+            <p>Cliquez sur <em>« Nouveau »</em> pour en créer une, ou sélectionnez une signature existante à modifier.</p>
+          </li>
+          <li>
+            <strong>Collez dans la zone d'édition</strong>
+            <p>Cliquez dans la zone <em>« Modifier la signature »</em> et faites <strong>Ctrl+V</strong> (Cmd+V sur Mac).</p>
+          </li>
+          <li>
+            <strong>Enregistrez</strong>
+            <p>Cliquez sur <em>« Enregistrer »</em>, puis <em>« OK »</em>. Votre signature est prête à l'emploi.</p>
+          </li>
+        </ol>
+      </aside>
+    </div>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.9.3/dist/confetti.browser.min.js"></script>
+  <script src="config.js"></script>
+  <script src="script.js"></script>
+</body>
+</html>

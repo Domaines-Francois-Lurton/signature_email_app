@@ -1,0 +1,224 @@
+* {
+  box-sizing: border-box;
+}
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  background: #f4f5f7;
+  margin: 0;
+  padding: 40px 20px;
+  color: #222;
+}
+
+.page-wrapper {
+  max-width: 1000px;
+  margin: 0 auto;
+}
+
+.page {
+  display: flex;
+  gap: 24px;
+  align-items: stretch;
+}
+
+.app {
+  flex: 1 1 640px;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+}
+
+.tutorial {
+  flex: 0 0 300px;
+  background: #fff;
+  border: 1px solid #e2e2e2;
+  border-radius: 8px;
+  padding: 20px 24px;
+  position: sticky;
+  top: 40px;
+}
+
+.tutorial ol {
+  margin: 0;
+  padding-left: 20px;
+}
+
+.tutorial li {
+  margin-bottom: 16px;
+  font-size: 13px;
+  line-height: 1.4;
+}
+
+.tutorial li strong {
+  display: block;
+  margin-bottom: 2px;
+}
+
+.tutorial li p {
+  margin: 0;
+  color: #555;
+}
+
+.tutorial-emoji {
+  font-size: 28px;
+  margin-bottom: 8px;
+  width: fit-content;
+  cursor: pointer;
+  user-select: none;
+}
+
+body.party-mode {
+  animation: party-spin 2.5s ease;
+}
+
+@keyframes party-spin {
+  0% {
+    transform: rotate(0deg) scale(1);
+    filter: hue-rotate(0deg);
+  }
+  25% {
+    transform: rotate(-3deg) scale(1.02);
+    filter: hue-rotate(90deg);
+  }
+  50% {
+    transform: rotate(3deg) scale(1.03);
+    filter: hue-rotate(180deg);
+  }
+  75% {
+    transform: rotate(-2deg) scale(1.02);
+    filter: hue-rotate(270deg);
+  }
+  100% {
+    transform: rotate(0deg) scale(1);
+    filter: hue-rotate(360deg);
+  }
+}
+
+@media (max-width: 860px) {
+  .page {
+    flex-direction: column;
+  }
+  .tutorial {
+    position: static;
+    flex-basis: auto;
+    width: 100%;
+  }
+}
+
+h1 {
+  font-size: 20px;
+  margin-bottom: 24px;
+}
+
+h2 {
+  font-size: 14px;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: #666;
+  margin-bottom: 12px;
+}
+
+.form-section,
+.preview-section {
+  background: #fff;
+  border: 1px solid #e2e2e2;
+  border-radius: 8px;
+  padding: 20px 24px;
+  margin-bottom: 24px;
+}
+
+.preview-section {
+  flex: 1;
+  margin-bottom: 0;
+}
+
+.field {
+  margin-bottom: 16px;
+  flex: 1;
+}
+
+.field-row {
+  display: flex;
+  gap: 16px;
+}
+
+label {
+  display: block;
+  font-size: 12px;
+  font-weight: 600;
+  margin-bottom: 6px;
+  color: #444;
+}
+
+input,
+select {
+  width: 100%;
+  padding: 8px 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  font-size: 14px;
+  font-family: inherit;
+}
+
+input:focus,
+select:focus {
+  outline: none;
+  border-color: #888;
+}
+
+.preview-box {
+  background: #fafafa;
+  border: 1px dashed #ccc;
+  border-radius: 6px;
+  padding: 20px;
+  margin-bottom: 16px;
+  overflow-x: auto;
+}
+
+#copy-btn {
+  position: relative;
+  overflow: hidden;
+  background: #171717;
+  color: #fff;
+  border: none;
+  height: 48px;
+  padding: 0 24px;
+  border-radius: 6px;
+  font-size: 14px;
+  cursor: pointer;
+}
+
+.copy-btn-label {
+  position: relative;
+  z-index: 10;
+}
+
+.copy-btn-fx {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  border-radius: 6px;
+  pointer-events: none;
+}
+
+.copy-btn-circle {
+  position: absolute;
+  left: 0;
+  top: 50%;
+  aspect-ratio: 1 / 1;
+  width: 100%;
+  transform: translate(-100%, -50%);
+  border-radius: 9999px;
+  background: #16a34a;
+  transition: transform 0.5s ease;
+}
+
+#copy-btn:hover .copy-btn-circle {
+  transform: translate(0, -50%) scale(1.5);
+}
+
+#copy-status {
+  margin-left: 12px;
+  font-size: 13px;
+  color: #2a8f4d;
+}
