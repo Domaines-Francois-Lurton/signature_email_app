@@ -49,12 +49,15 @@ function buildSignatureHtml() {
     telLine += `${tel1 ? " | " : ""}<a href="tel:${escapeHtml(tel2.replace(/[^+\d]/g, ""))}" style="font-family: ${FONT}; color: #000000; text-decoration: none;">${escapeHtml(tel2)}</a>`;
   }
 
+  const logoImg = `<img src="${company.logoUrl}" alt="${escapeHtml(company.logoAlt)}" width="${company.logoWidth}" style="display: block; border: 0; margin: 0 auto; background-color: transparent;">`;
+  const logoMarkup = company.website
+    ? `<a href="${company.website}" target="_blank" style="text-decoration: none;">${logoImg}</a>`
+    : logoImg;
+
   return `<table cellpadding="0" cellspacing="0" border="0" style="font-family: ${FONT}; color: #000000; border-collapse: collapse; width: 450px; background-color: transparent;">
     <tr>
         <td align="center" valign="middle" style="vertical-align: middle; padding-bottom: 20px; width: 150px; background-color: transparent;">
-            <a href="${company.website}" target="_blank" style="text-decoration: none;">
-                <img src="${company.logoUrl}" alt="${escapeHtml(company.logoAlt)}" width="${company.logoWidth}" style="display: block; border: 0; margin: 0 auto; background-color: transparent;">
-            </a>
+            ${logoMarkup}
         </td>
 
         <td valign="middle" style="vertical-align: middle; padding-bottom: 20px; border-left: 1px solid #eeeeee; padding-left: 30px; background-color: transparent;">
@@ -66,7 +69,7 @@ function buildSignatureHtml() {
             </div>
             <div style="font-family: ${FONT}; font-size: 11px; font-weight: 400; color: #000000; line-height: 1.5;">
                 ${telLine}${telLine ? "<br>" : ""}
-                <a href="mailto:${email}" style="font-family: ${FONT}; color: #000000; text-decoration: none;">${email || "email@" + company.emailDomain}</a>
+                <a href="mailto:${email}" style="font-family: ${FONT}; color: #000000; text-decoration: none;">${email || "jean.dupont@exemple.com"}</a>
             </div>
         </td>
     </tr>
