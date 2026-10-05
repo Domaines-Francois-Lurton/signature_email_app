@@ -12,7 +12,12 @@
     <h1>Générateur de signature email</h1>
     <p class="subtitle">Outil interne réservé aux employés du groupe François Lurton.</p>
 
-    <div class="page">
+    <nav class="tabs" role="tablist">
+      <button class="tab active" role="tab" aria-selected="true" data-tab="signature">Signature</button>
+      <button class="tab" role="tab" aria-selected="false" data-tab="banner">Bandeau email</button>
+    </nav>
+
+    <div class="page tab-panel" id="tab-signature">
       <div class="app">
         <section class="form-section">
           <div class="field">
@@ -58,11 +63,11 @@
           <div class="preview-box">
             <div id="signature-preview"></div>
           </div>
-          <button id="copy-btn">
+          <button id="copy-btn" class="copy-btn">
             <span class="copy-btn-label">Copier la signature</span>
             <span class="copy-btn-fx"><span class="copy-btn-circle"></span></span>
           </button>
-          <span id="copy-status"></span>
+          <span id="copy-status" class="copy-status"></span>
         </section>
       </div>
 
@@ -101,7 +106,133 @@
         </ol>
       </aside>
     </div>
+
+    <div class="page tab-panel" id="tab-banner" hidden>
+      <div class="app">
+        <section class="form-section">
+          <div class="field">
+            <label for="banner-company">Société</label>
+            <select id="banner-company"></select>
+          </div>
+        </section>
+
+        <section class="preview-section">
+          <h2>Aperçu du bandeau</h2>
+          <div class="preview-box">
+            <div id="banner-preview"></div>
+          </div>
+          <button id="banner-copy-btn" class="copy-btn">
+            <span class="copy-btn-label">Copier le bandeau</span>
+            <span class="copy-btn-fx"><span class="copy-btn-circle"></span></span>
+          </button>
+          <span id="banner-copy-status" class="copy-status"></span>
+        </section>
+      </div>
+
+      <aside class="tutorial">
+        <div class="tutorial-emoji" id="banner-tutorial-emoji">🖼️</div>
+        <h2>Ajouter le bandeau</h2>
+        <ol>
+          <li>
+            <strong>Choisissez votre société</strong>
+            <p>Le bandeau de la campagne en cours s'affiche dans l'aperçu.</p>
+          </li>
+          <li>
+            <strong>Copiez le bandeau</strong>
+            <p>Cliquez sur <em>« Copier le bandeau »</em>.</p>
+          </li>
+          <li>
+            <strong>Ouvrez vos signatures Outlook</strong>
+            <p>Dans Outlook : <em>Fichier → Options → Courrier → Signatures</em>, puis sélectionnez votre signature.</p>
+          </li>
+          <li>
+            <strong>Collez sous la signature</strong>
+            <p>Placez le curseur sur une nouvelle ligne <strong>sous</strong> votre signature, faites un <strong>clic droit</strong> et choisissez <em>« Conserver la mise en forme source »</em>. Un simple Ctrl+V peut faire disparaître les couleurs du bandeau.</p>
+          </li>
+          <li>
+            <strong>Remplacez l'ancien bandeau</strong>
+            <p>S'il y avait déjà un bandeau d'une campagne précédente, supprimez-le.</p>
+          </li>
+          <li>
+            <strong>Enregistrez</strong>
+            <p>Cliquez sur <em>« Enregistrer »</em>, puis <em>« OK »</em>.</p>
+          </li>
+        </ol>
+      </aside>
+    </div>
   </div>
+
+  <dialog id="banner-admin" class="admin-dialog">
+    <form id="banner-admin-form" class="admin-form">
+      <h2>Modifier un bandeau</h2>
+
+      <div class="field-row">
+        <div class="field">
+          <label for="admin-company">Société</label>
+          <select id="admin-company"></select>
+        </div>
+        <div class="field">
+          <label for="admin-type">Type</label>
+          <select id="admin-type">
+            <option value="image">Image</option>
+            <option value="html">HTML</option>
+            <option value="none">Aucun bandeau</option>
+          </select>
+        </div>
+      </div>
+
+      <div id="admin-image-fields">
+        <div class="field">
+          <label for="admin-image-url">Adresse de l'image</label>
+          <input type="url" id="admin-image-url" placeholder="https://i.ibb.co/…/bandeau.png">
+        </div>
+        <div class="field">
+          <label for="admin-link">Lien au clic (optionnel)</label>
+          <input type="url" id="admin-link" placeholder="https://www.domainesfrancoislurton.com/">
+        </div>
+        <div class="field-row">
+          <div class="field">
+            <label for="admin-alt">Texte alternatif</label>
+            <input type="text" id="admin-alt" placeholder="Salon Wine Paris 2027">
+          </div>
+          <div class="field admin-width">
+            <label for="admin-width">Largeur (px)</label>
+            <input type="number" id="admin-width" min="50" max="800" value="450">
+          </div>
+        </div>
+      </div>
+
+      <div id="admin-html-fields" class="field" hidden>
+        <label for="admin-html">Code HTML</label>
+        <textarea id="admin-html" rows="8" spellcheck="false"></textarea>
+      </div>
+
+      <label class="admin-preview-label">Aperçu</label>
+      <div class="preview-box">
+        <div id="admin-preview"></div>
+      </div>
+
+      <div class="field-row admin-auth">
+        <div class="field">
+          <label for="admin-password">Mot de passe</label>
+          <input type="password" id="admin-password" autocomplete="current-password">
+        </div>
+        <label class="admin-remember">
+          <input type="checkbox" id="admin-remember"> Mémoriser sur cet ordinateur
+        </label>
+      </div>
+
+      <p id="admin-status" class="admin-status"></p>
+
+      <div class="admin-actions">
+        <button type="button" id="admin-close" class="admin-secondary">Fermer</button>
+        <button type="submit" id="admin-save" class="copy-btn">
+          <span class="copy-btn-label">Enregistrer</span>
+          <span class="copy-btn-fx"><span class="copy-btn-circle"></span></span>
+        </button>
+      </div>
+    </form>
+  </dialog>
 
   <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.9.3/dist/confetti.browser.min.js"></script>
   <script src="config.js"></script>
